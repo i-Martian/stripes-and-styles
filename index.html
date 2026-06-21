@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stripes & Styles | Fashion</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    .hero-bg {
+      background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://picsum.photos/id/1015/2000/1200');
+      background-size: cover;
+      background-position: center;
+    }
+    .stripe-pattern {
+      background: repeating-linear-gradient(45deg, #fff, #fff 2px, transparent 2px, transparent 8px);
+    }
+  </style>
+</head>
+<body class="bg-black text-white font-sans">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-black/90 backdrop-blur-md z-50 border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <img src="logo.png" alt="Stripes & Styles" class="h-10">
+      </div>
+      <div class="flex gap-8 text-sm uppercase tracking-widest">
+        <a href="#home" class="hover:text-gray-400 transition">Home</a>
+        <a href="#gallery" class="hover:text-gray-400 transition">Gallery</a>
+        <a href="#about" class="hover:text-gray-400 transition">About</a>
+        <a href="#contact" class="hover:text-gray-400 transition">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="hero-bg h-screen flex items-center justify-center text-center">
+    <div>
+      <h1 class="text-6xl md:text-8xl font-bold mb-4 tracking-wider">STRIPES &amp; STYLES</h1>
+      <p class="text-xl md:text-2xl text-gray-300">Timeless Fashion • Bold Stripes • Unique Style</p>
+      <a href="#gallery" class="mt-10 inline-block px-8 py-4 border border-white hover:bg-white hover:text-black transition text-lg">View Collection</a>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="py-20 px-6 max-w-7xl mx-auto">
+    <h2 class="text-5xl font-bold text-center mb-12">Latest Work</h2>
+    <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Images will be added here -->
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-20 bg-zinc-950">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-5xl font-bold mb-8">About the Brand</h2>
+      <p class="text-lg text-gray-300 leading-relaxed">
+        Stripes & Styles is a creative fashion brand focused on bold stripe patterns and contemporary silhouettes. 
+        Each piece is designed with passion and crafted to make a statement.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 px-6 max-w-7xl mx-auto text-center">
+    <h2 class="text-5xl font-bold mb-8">Get in Touch</h2>
+    <p class="text-gray-400 mb-8">Have a project or just want to say hello?</p>
+    <a href="mailto:your@email.com" class="text-xl underline hover:text-gray-400">your@email.com</a>
+  </section>
+
+  <footer class="text-center py-8 border-t border-gray-800 text-gray-500 text-sm">
+    © 2026 Stripes & Styles. All Rights Reserved.
+  </footer>
+
+  <!-- Simple Lightbox -->
+  <div id="lightbox" class="hidden fixed inset-0 bg-black/95 z-[100] flex items-center justify-center">
+    <img id="lightbox-image" class="max-h-[90vh] max-w-[90vw] rounded-lg" alt="">
+    <button onclick="closeLightbox()" class="absolute top-8 right-8 text-4xl">&times;</button>
+  </div>
+
+  <script>
+    // Add your images here (just replace/add new lines)
+    const images = [
+      { src: "images/work1.jpg", alt: "Fashion Look 1" },
+      { src: "images/work2.jpg", alt: "Fashion Look 2" },
+      { src: "images/work3.jpg", alt: "Fashion Look 3" },
+      { src: "images/work4.jpg", alt: "Fashion Look 4" },
+      { src: "images/work5.jpg", alt: "Fashion Look 5" },
+      { src: "images/work6.jpg", alt: "Fashion Look 6" }
+    ];
+
+    const gallery = document.getElementById('gallery-grid');
+    images.forEach(img => {
+      const div = document.createElement('div');
+      div.className = "group cursor-pointer overflow-hidden";
+      div.innerHTML = `
+        <img src="${img.src}" alt="${img.alt}" 
+             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="mt-3 text-sm text-gray-400">${img.alt}</div>
+      `;
+      div.onclick = () => showLightbox(img.src);
+      gallery.appendChild(div);
+    });
+
+    function showLightbox(src) {
+      document.getElementById('lightbox-image').src = src;
+      document.getElementById('lightbox').classList.remove('hidden');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
